@@ -3,7 +3,7 @@ from .models import History
 
 
 class DownloadForm(forms.ModelForm):
-    url = forms.URLField(max_length=200, required=True)
+    url = forms.RegexField(regex=r'^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+')
 
     class Meta:
         model = History

@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .forms import DownloadForm
 import youtube_dl
 
@@ -11,12 +11,9 @@ def download(request):
     if form.is_valid():
         url = form.cleaned_data.get('url')
         options = {'format': 'best'}
-        try:
-            with youtube_dl.YoutubeDL(options) as ydl:
-                info = ydl.extract_info(url, download=True)
-                return render(request, 'downloader/index.html', {'form': form, 'success': '{} was successfully downloaded'.format(info['title'])})
-        except:
-            return render(request, 'downloader/index.html', {'form': form, 'error': 'Enter a valid URL'})
+        with youtube_dl.YoutubeDL(options) as youtube:
+            info = youtube.extract_info(url)
+        return render(request, 'downloader/index.html', {'form': form, 'success': '{} was successfully downloaded'.format(info['title'])})
     return render(request, 'downloader/index.html', {'form': form})
 
 
