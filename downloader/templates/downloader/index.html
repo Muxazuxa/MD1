@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if success %}
+    <h4>{{ success }}</h4>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <label for="url">Url</label>
+        <input type="text" class="form-control" id="url" name="url" placeholder="Enter url here">
+    </div>
+    <button type="submit" class="btn btn-default">Download</button>
+</form>
+</body>
+</html>
