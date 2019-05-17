@@ -5,7 +5,7 @@
 
 2.Clone the reposiory: `git clone https://github.com/Muxazuxa/MD1`
 
-3.`cd` into `MD1`
+3.`cd` into `task1`
 
 4.Install virtualenv
 
